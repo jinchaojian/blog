@@ -20,8 +20,8 @@ var devPaths = {
 
 //生产环境目录
 var productPaths={
-    js:'public/develop/javascripts/',
-    css:'public/develop/stylesheets/'
+    js:'public/javascripts/',
+    css:'public/stylesheets/'
 }
 
 
