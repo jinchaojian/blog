@@ -22,7 +22,8 @@ var devPaths = {
 //生产环境目录
 var productPaths={
     js:'public/javascripts/',
-    css:'public/stylesheets/'
+    css:'public/stylesheets/',
+    pug:'views'
 }
 
 
@@ -71,16 +72,14 @@ gulp.task('scripts',function(){
 gulp.task('default',function(){
  //   var server=livereload();
     gulp.start('lint','less','scripts');
-    gulp.watch(devPaths.css+'**/*',['less']);
-    gulp.watch(devPaths.js+'**/*',['lint','scripts']);
+    gulp.watch(devPaths.css+'**/*',['less']).on('change',reload);
+    gulp.watch(devPaths.js+'**/*',['lint','scripts']).on('change',reload);
 //用 './xx' 开头作为当前路径开始，会导致无法监测到新增文件，需省略掉 './'
-    gulp.watch('views/**/*.*',function(file){
-        server.change(file.path);
-    });
+    gulp.watch('views/**/*.*').on('change',reload);
     browserSync.init({
         proxy: 'http://localhost:3000',
-        port: 5000,
-        files: [productPaths.css,productPaths.js]
+        port: 3000,
+        files: [productPaths.css,productPaths.js,productPaths.pug]
     })
     console.log('Watching files changes');
 
