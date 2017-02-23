@@ -3,8 +3,8 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
-  p hello word
-  p nihao
-  p haha
-  p.hello sm
+  h2.hello sm
   span.glyphicon.glyphicon-search
+
+    script.
+        $('h2').removeClass('hello');
