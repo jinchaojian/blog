@@ -6,10 +6,11 @@ var less = require('gulp-less'); //less的编译
 var concat = require('gulp-concat'); //合并文件
 var uglify= require('gulp-uglify'); //压缩js代码
 var rename= require('gulp-rename'); //文件重命名
-var livereload=require('gulp-livereload'); //自动刷新页面
+//var livereload=require('gulp-livereload'); //自动刷新页面
 var minifyCss=require('gulp-minify-css'); //压缩css
 var gutil=require('gulp-util'); //进行错误处理，监听 error 事件进行错误处理从而避免 gulp 进程崩溃
-
+var browserSync=require('browser-sync').create();
+var reload=browserSync.reload;
 
 
 //开发环境目录
@@ -39,7 +40,7 @@ gulp.task('less',function(){
     gulp.src(devPaths.css+'*.less')
         .pipe(less())
         .pipe(concat('all.css'))
-        .pipe(gulp.dest(productPaths.css))
+ //       .pipe(gulp.dest(productPaths.css))
         .pipe(rename('all.min.css'))
         .pipe(minifyCss())
         .pipe(gulp.dest(productPaths.css));
@@ -55,7 +56,7 @@ gulp.task('scripts',function(){
             gutil.log('JS Error!', err.message);
             this.end();
         })
-        .pipe(gulp.dest(productPaths.js))
+ //       .pipe(gulp.dest(productPaths.js))
         .pipe(rename('all.min.js'))
         .pipe(uglify())
         .on('error', function(err) {
@@ -68,7 +69,7 @@ gulp.task('scripts',function(){
 
 
 gulp.task('default',function(){
-    var server=livereload();
+ //   var server=livereload();
     gulp.start('lint','less','scripts');
     gulp.watch(devPaths.css+'**/*',['less']);
     gulp.watch(devPaths.js+'**/*',['lint','scripts']);
@@ -76,8 +77,13 @@ gulp.task('default',function(){
     gulp.watch('views/**/*.*',function(file){
         server.change(file.path);
     });
-
+    browserSync.init({
+        proxy: 'http://localhost:3000',
+        port: 5000,
+        files: [productPaths.css,productPaths.js]
+    })
     console.log('Watching files changes');
+
 });
 
 

@@ -1,1 +1,0 @@
-var nihaooo=12;
