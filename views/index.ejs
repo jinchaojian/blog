@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>Border Layout Demo</title>
+    <link rel="stylesheet" type="text/css" href="stylesheets/all.min.css">
     <style>
         div, header, footer {
             border: solid 1px #888;
@@ -12,7 +13,7 @@
 </head>
 <body class="layout">
     <header data-options="region:'north', height: '50'">
-        Header
+        <%include base/head%>
     </header>
     <div class="layout" data-options="region:'center'">
         <div data-options="region:'north', height: '45'">north</div>
@@ -21,15 +22,9 @@
         <div data-options="region:'east', width: '20%', min-width: 100, max-width: '300'">East</div>
     </div>
     <footer data-options="region:'south', height: '30'" class="footer">
-        footer
+        <%include base/footer%>
     </footer>
 <script src="javascripts/all.min.js"></script>
 </body>
 </html>
 
-
-
-
-
-
-<script src="javascripts/all.min.js"></script>
