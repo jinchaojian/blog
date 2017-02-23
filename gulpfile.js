@@ -50,7 +50,7 @@ gulp.task('less',function(){
 
 //合并，压缩文件
 gulp.task('scripts',function(){
-    gulp.src(devPaths.js+'*.js')
+    gulp.src([devPaths.js+'**/*.js',devPaths.js+'*.js'])
 
         .pipe(concat('all.js'))
         .on('error', function(err) {
