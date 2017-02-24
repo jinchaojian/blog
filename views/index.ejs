@@ -11,14 +11,18 @@
         }
     </style>
 </head>
-<body class="layout">
+<body class="layout" background="">
     <header data-options="region:'north', height: '50'">
         <%include base/head%>
     </header>
     <div class="layout" data-options="region:'center'">
         <div data-options="region:'north', height: '45'">north</div>
         <div data-options="region:'center'">center</div>
-        <div data-options="region:'west', width: '15%', min-width: 100, max-width: '250'">West</div>
+        <div data-options="region:'west', width: '15%', min-width: 100, max-width: '250'">West
+<p>如果你点我，我就会消失。</p>
+<p>继续点我!</p>
+<p>接着点我!</p>
+        </div>
         <div data-options="region:'east', width: '20%', min-width: 100, max-width: '300'">East</div>
     </div>
     <footer data-options="region:'south', height: '30'" class="footer">

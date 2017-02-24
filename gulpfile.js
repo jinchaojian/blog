@@ -41,7 +41,7 @@ gulp.task('less',function(){
     gulp.src(devPaths.css+'*.less')
         .pipe(less())
         .pipe(concat('all.css'))
- //       .pipe(gulp.dest(productPaths.css))
+       .pipe(gulp.dest(productPaths.css))      //开发时需要关注文件压缩顺序，生产环境可以注释
         .pipe(rename('all.min.css'))
         .pipe(minifyCss())
         .pipe(gulp.dest(productPaths.css));
@@ -50,14 +50,14 @@ gulp.task('less',function(){
 
 //合并，压缩文件
 gulp.task('scripts',function(){
-    gulp.src([devPaths.js+'**/*.js',devPaths.js+'*.js'])
+    gulp.src([devPaths.js+'*.js',devPaths.js+'**/*.js'])
 
         .pipe(concat('all.js'))
         .on('error', function(err) {
             gutil.log('JS Error!', err.message);
             this.end();
         })
- //       .pipe(gulp.dest(productPaths.js))
+       .pipe(gulp.dest(productPaths.js))     //开发时需要关注文件压缩顺序，生产环境可以注释
         .pipe(rename('all.min.js'))
         .pipe(uglify())
         .on('error', function(err) {
