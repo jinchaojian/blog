@@ -2,33 +2,133 @@
 <html class="no-js">
 <head>
     <meta charset="utf-8">
-    <title>Border Layout Demo</title>
+    <title>Chac的个人博客</title>
     <link rel="stylesheet" type="text/css" href="stylesheets/all.min.css">
-    <style>
-        div, header, footer {
-            border: solid 1px #888;
-            text-align: center;
-        }
-    </style>
+ <%  /* <style>
+    div, header, footer {
+        border: solid 1px #888;
+        text-align: center;
+    }
+
+</style>*/
+%>
+<style type="text/css">
+
+</style>
 </head>
-<body class="layout" background="">
-    <header data-options="region:'north', height: '50'">
-        <%include base/head%>
-    </header>
-    <div class="layout" data-options="region:'center'">
-        <div data-options="region:'north', height: '45'">north</div>
-        <div data-options="region:'center'">center</div>
-        <div data-options="region:'west', width: '15%', min-width: 100, max-width: '250'">West
-<p>如果你点我，我就会消失。</p>
-<p>继续点我!</p>
-<p>接着点我!</p>
+<body>
+<%include base/head.ejs%>
+<div id="masthead">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        <h1>Chac
+          <p class="lead">为梦想而行</p>
+        </h1>
+      </div>
+      <div class="col-md-5">
+        <div class="well well-lg">
+          <div class="row">
+            <div class="col-sm-12">
+              空留
+            </div>
+          </div>
         </div>
-        <div data-options="region:'east', width: '20%', min-width: 100, max-width: '300'">East</div>
+      </div>
     </div>
-    <footer data-options="region:'south', height: '30'" class="footer">
-        <%include base/footer%>
-    </footer>
+  </div><!-- /cont -->
+
+
+</div>
+
+
+<div class="container">
+  <div class="row">
+
+    <div class="col-md-12">
+
+      <div class="panel">
+        <div class="panel-body">
+
+
+          <!--/stories-->
+          <div class="row">
+            <br>
+            <div class="col-md-2 col-sm-3 text-center">
+              <a class="story-img" href="#"><img src="//placehold.it/100" style="width:100px;height:100px" class="img-circle"></a>
+            </div>
+            <div class="col-md-10 col-sm-9">
+              <h3>第一篇博文</h3>
+              <div class="row">
+                <div class="col-xs-9">
+                  <p>这里是第一篇博文的内容。这里是第一篇博文的内容。这里是第一篇博文的内容。这里是第一篇博文的内容。这里是第一篇博文的内容。这里是第一篇博文的内容。这里是第一篇博文的内容。这里是第一篇博文的内容。这里是第一篇博文的内容。</p>
+                  <p class="lead"><button class="btn btn-default">更多</button></p>
+                  <p class="pull-right"><span class="label label-default">标签一</span> <span class="label label-default">标签二</span> <span class="label label-default">标签三</span></p>
+                  <ul class="list-inline"><li><a href="#">几天前发布</a></li><li><a href="#"><i class="glyphicon glyphicon-comment"></i>几条评论</a></li></ul>
+                  </div>
+                <div class="col-xs-3"></div>
+              </div>
+              <br><br>
+            </div>
+          </div>
+          <hr>
+
+          <div class="row">
+            <br>
+            <div class="col-md-2 col-sm-3 text-center">
+              <a class="story-img" href="#"><img src="//placehold.it/100" style="width:100px;height:100px" class="img-circle"></a>
+            </div>
+            <div class="col-md-10 col-sm-9">
+              <h3>第二篇博文</h3>
+              <div class="row">
+                <div class="col-xs-9">
+                  <p>这里是第二篇博文的内容。这里是第二篇博文的内容。这里是第二篇博文的内容。这里是第二篇博文的内容。这里是第二篇博文的内容。这里是第二篇博文的内容。这里是第二篇博文的内容。</p>
+                  <p class="lead"><button class="btn btn-default">更多</button></p>
+                  <p class="pull-right"><span class="label label-default">标签一</span> <span class="label label-default">标签二</span> <span class="label label-default">标签三</span></p>
+                  <ul class="list-inline"><li><a href="#">几天前发布</a></li><li><a href="#"><i class="glyphicon glyphicon-comment"></i>几条评论</a></li></ul>
+                  </div>
+                <div class="col-xs-3"></div>
+              </div>
+              <br><br>
+            </div>
+          </div>
+          <hr>
+          <!--/stories-->
+
+
+          <a href="/" class="btn btn-primary pull-right btnNext">下一页 <i class="glyphicon glyphicon-chevron-right"></i></a>
+
+
+        </div>
+      </div>
+
+    </div><!--/col-12-->
+  </div>
+</div>
+
+<hr>
+
+<div class="container" id="footer">
+  <div class="row">
+    <div class="col col-sm-12">
+
+      <h1>关注我</h1>
+      <div class="btn-group">
+       <a class="btn btn-twitter btn-lg" href="#"><i class="icon-twitter icon-large"></i> 新浪博客</a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<hr>
+<%include base/footer.ejs%>
+
+
 <script src="javascripts/all.min.js"></script>
+    <script type="text/javascript">
+
+    </script>
 </body>
 </html>
 
