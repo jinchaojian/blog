@@ -1,3 +1,6 @@
+/*
+
+
 ! function() {
     function o(w, v, i) {
         return w.getAttribute(v) || i }
@@ -29,7 +32,7 @@
         a = Math.random,
         f = { x: null, y: null, max: 20000 };
     u.id = c;
-    u.style.cssText = "position:fixed;top:0;left:0;z-index:" + s.z + ";opacity:" + s.o;
+    u.style.cssText = "pointer-events: none;position:fixed;top:0;left:0;z-index:" + s.z + ";opacity:" + s.o;
     j("body")[0].appendChild(u);
     k(), window.onresize = k;
     window.onmousemove = function(i) { i = i || window.event, f.x = i.clientX, f.y = i.clientY }, window.onmouseout = function() { f.x = null, f.y = null };
@@ -40,3 +43,7 @@
             d = 2 * a() - 1;
         t.push({ x: h, y: g, xa: q, ya: d, max: 6000 }) }
     setTimeout(function() { b() }, 100) }();
+
+
+
+*/
