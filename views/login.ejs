@@ -12,19 +12,19 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-offset-3 col-md-6">
-                        <form class="form-horizontal" action="/login" >
+                        <form class="form-horizontal" >
                             <span class="heading">用户登录</span>
                             <div class="form-group">
-                                <input type="email" class="form-control" id="inputEmail3" placeholder="用户名或电子邮件">
+                                <input class="form-control" id="nickname" placeholder="用户名">
                                 <i class="glyphicon glyphicon-user"></i>
                             </div>
                             <div class="form-group help">
-                                <input type="password" class="form-control" id="inputPassword3" placeholder="密　码">
+                                <input type="password" class="form-control" id="password" placeholder="密　码" >
                                 <i class="glyphicon glyphicon-lock"></i>
                                 <a href="#" class="fa fa-question-circle"></a>
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-default">登录</button>
+                                <button type="button" class="btn btn-default" id="submit">登录</button>
                             </div>
                         </form>
                     </div>
@@ -38,5 +38,47 @@
 <script type="text/javascript">
 //登陆页面form高度计算
     $('.form-bg').height($(window).height()-140);
+
+
+
+    function validateForm(){
+        var nickname=$('#nickname').val();
+        var psw=$('#password').val();
+        if(!(nickname||psw)){
+            swal("选项不能为空!");
+            return 0;
+        }
+        return 1;
+    };
+
+
+    $('#submit').click(function(){
+    var url="http://localhost/chac_blog_api/public/index.php/chac/user/login/?&";
+    var nickname=$('#nickname').val();
+    var password=$('#password').val();
+    var re=validateForm();
+    if(re){
+    $.get({
+        url: url+"nickname="+nickname+"&password="+password,
+        success: function(data) {
+            console.log(data);
+            if(data.data==1){
+                swal("Good!", "登录成功", "success");
+            }else{
+                swal("OMG!", "用户名或密码错误", "error");
+            }
+        },
+        error: function() {
+            alert("Error");
+        }
+    })
+    }
+    });
+
+
+
+
+
+
 </script>
 <%include base/end.ejs%>
