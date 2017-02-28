@@ -41,21 +41,36 @@
 <script type="text/javascript">
 //注册页面form高度计算
     $('.form-bg').height($(window).height()-140);
+
+    //注册验证
     function validateForm(){
+        var myreg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+        var myregName = /^[0-9a-zA-Z\u4E00-\u9FA5\_]*$/;
         var nickname=$('#nickname').val();
         var psw1=$('#password1').val();
         var psw2=$('#password2').val();
-        if(!(nickname||psw1||psw2)){
+        if(!(nickname&&psw1&&psw2)){
             swal("选项不能为空!");
-            return 0;
+            return false;
+        }
+        else if(nickname.length == 0 || nickname.length > 18){
+            swal('格式错误', '请输入1-18位字符作为昵称！', 'warning');
+            return false;
+        }
+        else if(!myregName.test(nickname)){
+            swal('格式错误', '只允许中文、数字、字母和下划线！', 'warning');
+            return false;
         }
         else if(!(psw1==psw2)){
-            swal("OMG!", "两次输入密码不一致", "error");
-            return 0;
+            swal("格式错误!", "两次输入密码不一致", "warning");
+            return false;
         }
-        return 1;
+        else if(psw1.length < 6 || psw1.length > 20){
+            swal('格式错误', '请填写6-20位密码', 'warning');
+            return false;
+        }
+        return true;
     };
-
 
     $('#submit').click(function(){
     var url="http://localhost/chac_blog_api/public/index.php/chac/user/reg/?&";
