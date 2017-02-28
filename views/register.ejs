@@ -82,9 +82,9 @@
         url: url+"nickname="+nickname+"&password="+password,
         success: function(data) {
             if(data.data==1){
-                swal("Good!", "用户注册成功", "success");
+                window.location.href = '/';
             }else if(data.data==2){
-                swal("OMG!", "用户名已存在", "error");
+                swal("OMG!", data.message, "error");
             }
         },
         error: function() {
