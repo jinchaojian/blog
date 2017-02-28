@@ -76,13 +76,16 @@
     var url="http://localhost/chac_blog_api/public/index.php/chac/user/reg/?&";
     var nickname=$('#nickname').val();
     var password=$('#password1').val();
-    var re=validateForm();
-    if(re){
+    var validate=validateForm();
+    if(validate){
+    var hash=hex_md5(password);
     $.get({
-        url: url+"nickname="+nickname+"&password="+password,
+        url: url+"nickname="+nickname+"&password="+hash,
         success: function(data) {
             if(data.data==1){
-                window.location.href = '/';
+               document.cookie='nickname='+nickname;
+               document.cookie='password='+hash;
+               // window.location.href = '/';
             }else if(data.data==2){
                 swal("OMG!", data.message, "error");
             }
@@ -93,7 +96,6 @@
     })
     }
     });
-
 
 
 
