@@ -42,7 +42,7 @@
           <div class="row">
             <br>
             <div class="col-md-2 col-sm-3 text-center">
-              <a class="story-img" href="#"><img src="images/img.jpg" style="width:100px;height:100px" class="img-circle"></a>
+              <a class="story-img" href="#"><img src="/images/img.jpg" style="width:100px;height:100px" class="img-circle"></a>
             </div>
             <div class="col-md-10 col-sm-9">
               <h3><%=result.blogs[i].title%></h3>
@@ -100,28 +100,29 @@
     <script type="text/javascript">
         $('#previous').click(function(){
             var pageNow=window.location.pathname;
-            pageNow=pageNow.replace(/[/]/g,"");
+            pageNow=pageNow.replace(/[^0-9]/g,"","");
             var prePage=parseInt(pageNow)-1;
             if(!prePage)
             {
                 prePage=0;
             }
-            window.location.href="http://localhost:3000/"+prePage;
+            window.location.href="/blog/"+prePage;
         })
       $('#next').click(function(){
-          var pageNow=window.location.pathname;
-           pageNow=pageNow.replace(/[/]/g,"");
+          var pageNow=location.pathname;
+           pageNow=pageNow.replace(/[^0-9]/g,"","");
          var nextPage=parseInt(pageNow)+1;
+
           if(!nextPage)
           {
               nextPage=1;
           }
-          window.location.href="http://localhost:3000/"+nextPage;
+          location.href="/blog/"+nextPage;
       })
 
         //控制下一页按钮的消失
         var pageNow=window.location.pathname;
-        pageNow=pageNow.replace(/[/]/g,"");
+        pageNow=pageNow.replace(/[^0-9]/g,"","");
         pageNow=parseInt(pageNow);
         var page=parseInt(<%=result.num %>);
         if(pageNow>=page){

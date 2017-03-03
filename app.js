@@ -31,12 +31,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/',function(req,res,next){
     var pn=0;
+    if(req.params.pn){
+        pn=req.params.pn;
+    }
     request(config.development.server+'chac/blog/getIndexBlog/?&pn='+pn, function(error, response, body) {
         if (!error) {
             var result = JSON.parse(body);
             if (result.ret == 200) {
+                console.log(result.ret);
                 res.render('index', {
-                    'path':'',
+                    'pn':pn,
                     result: result.data,
                     'title':result.ret
                 });
@@ -56,7 +60,7 @@ app.get('/',function(req,res,next){
     })
 })
 
-app.get('/:pn',function(req,res,next){
+app.get('/blog/:pn',function(req,res,next){
     var pn=0;
     if(req.params.pn){
         pn=req.params.pn;
@@ -95,6 +99,9 @@ app.get('/:pn',function(req,res,next){
     res.render('posts', { title: '登陆' });
 });*/
 
+
+
+
 app.get('/posts', function(req, res, next) {
     //res.render('posts', { title: '登陆' });
     request('http://localhost/chac_blog_api/public/index.php/chac/user/login/?&nickname=242p2&password=11', function(error, response, body) {
@@ -123,12 +130,14 @@ app.get('/posts', function(req, res, next) {
 });
 
 
-
-
-
 app.use('/users', users);
 app.use('/login',login);
 app.use('/register',register);
+
+
+
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
