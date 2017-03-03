@@ -1,6 +1,6 @@
 var config={
     development:{
-        server:'http://dev.wuanlife.com:800/'
+        server:'http://localhost/chac_blog_api/public/index.php/'
     }
 }
 

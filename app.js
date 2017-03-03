@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var request = require('request');
-
+var config=require('./config/config');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -29,7 +29,65 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
+app.get('/',function(req,res,next){
+    var pn=0;
+    request(config.development.server+'chac/blog/getIndexBlog/?&pn='+pn, function(error, response, body) {
+        if (!error) {
+            var result = JSON.parse(body);
+            if (result.ret == 200) {
+                res.render('index', {
+                    'path':'',
+                    result: result.data,
+                    'title':result.ret
+                });
+            } else{
+                res.render('error', {
+                    'message': result.message,
+                    error: {
+                        'status': result.ret,
+                        'stack': ''
+                    }
+                });
+            }
+        } else {
+            console.error('posts failed:', error);
+            next(error);
+        }
+    })
+})
+
+app.get('/:pn',function(req,res,next){
+    var pn=0;
+    if(req.params.pn){
+        pn=req.params.pn;
+    }
+    request(config.development.server+'chac/blog/getIndexBlog/?&pn='+pn, function(error, response, body) {
+        if (!error) {
+            var result = JSON.parse(body);
+            if (result.ret == 200) {
+                console.log(result.ret);
+                res.render('index', {
+                    'path':'',
+                    result: result.data,
+                    'title':result.ret
+                });
+            } else{
+                res.render('error', {
+                    'message': result.message,
+                    error: {
+                        'status': result.ret,
+                        'stack': ''
+                    }
+                });
+            }
+        } else {
+            console.error('posts failed:', error);
+            next(error);
+        }
+    })
+})
+
+//app.use('/', index);
 /*app.get('/', function(req, res) {
   res.send('hello, express');
 });*/
@@ -91,5 +149,5 @@ app.use(function(err, req, res, next) {
 });
 
 //新增测试修改路由请求
-//app.listen(3000);
+app.listen(3000);
 module.exports = app;
