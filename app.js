@@ -67,7 +67,7 @@ app.get('/:pn',function(req,res,next){
             if (result.ret == 200) {
                 console.log(result.ret);
                 res.render('index', {
-                    'path':'',
+                    'pn':pn,
                     result: result.data,
                     'title':result.ret
                 });
