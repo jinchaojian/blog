@@ -1,14 +1,6 @@
 
 
 <%include base/head.ejs%>
-
-<style>
-    #previous
-    {
-        position:absolute;
-        right:180px;
-    }
-</style>
 <div id="masthead">
   <div class="container">
     <div class="row">
@@ -42,7 +34,7 @@
           <div class="row">
             <br>
             <div class="col-md-2 col-sm-3 text-center">
-              <a class="story-img" href="#"><img src="/images/img.jpg" style="width:100px;height:100px" class="img-circle"></a>
+              <a class="story-img" href="#"><img src="images/img.jpg" style="width:100px;height:100px" class="img-circle"></a>
             </div>
             <div class="col-md-10 col-sm-9">
               <h3><%=result.blogs[i].title%></h3>
@@ -50,8 +42,8 @@
                 <div class="col-xs-9">
                   <p><%=result.blogs[i].content%></p>
                   <p class="lead"><button class="btn btn-default">更多</button></p>
-                  <p class="pull-right"><span class="label label-default"><%=result.blogs[i].name%></span> <span class="label label-default">标签二</span> <span class="label label-default">标签三</span></p>
-                  <ul class="list-inline"><li><a href="#">发布时间 : <%=result.blogs[i].create_time%></a></li><li><a href="#"><i class="glyphicon glyphicon-comment"></i>几条评论</a></li></ul>
+                  <p class="pull-right"><span class="label label-default">标签一</span> <span class="label label-default">标签二</span> <span class="label label-default">标签三</span></p>
+                  <ul class="list-inline"><li><a href="#">发布时间</a></li><li><a href="#"><i class="glyphicon glyphicon-comment"></i>几条评论</a></li></ul>
                   </div>
                 <div class="col-xs-3"></div>
               </div>
@@ -59,15 +51,38 @@
             </div>
           </div>
           <hr>
-
+<%}%>
 <%}%>
 
-<%}%>
 
+
+
+
+
+          <div class="row">
+            <br>
+            <div class="col-md-2 col-sm-3 text-center">
+              <a class="story-img" href="#"><img src="images/img.jpg" style="width:100px;height:100px" class="img-circle"></a>
+            </div>
+            <div class="col-md-10 col-sm-9">
+              <h3>第二篇博文</h3>
+              <div class="row">
+                <div class="col-xs-9">
+                  <p>这里是第二篇博文的内容。这里是第二篇博文的内容。这里是第二篇博文的内容。这里是第二篇博文的内容。这里是第二篇博文的内容。这里是第二篇博文的内容。这里是第二篇博文的内容。</p>
+                  <p class="lead"><button class="btn btn-default">更多</button></p>
+                  <p class="pull-right"><span class="label label-default">标签一</span> <span class="label label-default">标签二</span> <span class="label label-default">标签三</span></p>
+                  <ul class="list-inline"><li><a href="#">发布时间</a></li><li><a href="#"><i class="glyphicon glyphicon-comment"></i>几条评论</a></li></ul>
+                  </div>
+                <div class="col-xs-3"></div>
+              </div>
+              <br><br>
+            </div>
+          </div>
+          <hr>
           <!--/stories-->
 
-            <a class="btn btn-primary pull-right btnNext" id="previous" style="display:<%if(pn<=0){%>none<%}%>">上一页 <i class="glyphicon glyphicon-chevron-right"></i></a>
-          <a class="btn btn-primary pull-right btnNext" id="next">下一页 <i class="glyphicon glyphicon-chevron-right"></i></a>
+
+          <a href="/" class="btn btn-primary pull-right btnNext">下一页 <i class="glyphicon glyphicon-chevron-right"></i></a>
 
 
         </div>
@@ -98,36 +113,7 @@
 
 
     <script type="text/javascript">
-        $('#previous').click(function(){
-            var pageNow=window.location.pathname;
-            pageNow=pageNow.replace(/[^0-9]/g,"","");
-            var prePage=parseInt(pageNow)-1;
-            if(!prePage)
-            {
-                prePage=0;
-            }
-            window.location.href="/blog/"+prePage;
-        })
-      $('#next').click(function(){
-          var pageNow=location.pathname;
-           pageNow=pageNow.replace(/[^0-9]/g,"","");
-         var nextPage=parseInt(pageNow)+1;
 
-          if(!nextPage)
-          {
-              nextPage=1;
-          }
-          location.href="/blog/"+nextPage;
-      })
-
-        //控制下一页按钮的消失
-        var pageNow=window.location.pathname;
-        pageNow=pageNow.replace(/[^0-9]/g,"","");
-        pageNow=parseInt(pageNow);
-        var page=parseInt(<%=result.num %>);
-        if(pageNow>=page){
-            $('#next').css('display','none');
-        }
     </script>
 <%include base/end.ejs%>
 
